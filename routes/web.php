@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('admin', function () {
     return view('dashboard');
 });
+
+//RoomType Routes
+Route::resource('roomtype',RoomTypeController::class);
