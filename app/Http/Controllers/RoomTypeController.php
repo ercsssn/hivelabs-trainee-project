@@ -64,7 +64,8 @@ class RoomTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = RoomType::find($id);
+        return view('roomtype.edit', ['data'=>$data]);
     }
 
     /**
@@ -76,7 +77,12 @@ class RoomTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = RoomType::find($id);
+        $data->title = $request->title;
+        $data->detail = $request->detail;
+        $data->save();
+
+        return redirect('admin/roomtype/'.$id.'/edit')->with('success','Room type has been updated.');
     }
 
     /**
