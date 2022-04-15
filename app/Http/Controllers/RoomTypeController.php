@@ -23,7 +23,7 @@ class RoomTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('roomtype.create');
     }
 
     /**
