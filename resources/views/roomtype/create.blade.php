@@ -20,11 +20,11 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>Title</th>
-                            <th><input name="title" type="text" class="form-control"></th>
+                            <td><input name="title" type="text" class="form-control"></td>
                         </tr>
                         <tr>
                             <th>Detail</th>
-                            <th><textarea name="detail" class="form-control"></textarea></th>
+                            <td><textarea name="detail" class="form-control"></textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2">

@@ -52,7 +52,8 @@ class RoomTypeController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = RoomType::find($id);
+        return view('roomtype.show', ['data'=>$data]);
     }
 
     /**
