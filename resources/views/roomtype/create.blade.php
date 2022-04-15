@@ -10,23 +10,29 @@
             <a href="{{ url('admin/roomtype') }}" class="float-right btn btn-success btn-sm">View All</a>
            </h6>
        </div>
-       <div class="card-body">
+       <div class="card-body">  
+           @if(Session::has('success'))
+           <p class="text-success">{{ session('success') }}</p>
+           @endif
            <div class="table-responsive">
-               <table class="table table-bordered">
-                   <tr>
-                       <th>Title</th>
-                       <th><input type="text" class="form-control"></th>
-                   </tr>
-                   <tr>
-                    <th>Detail</th>
-                    <th><textarea class="form-control"></textarea></th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" class="btn btn-primary">
-                    </td>
-                </tr>
-               </table>
+               <form method="POST" action="{{ url('admin/roomtype') }}">
+                    @csrf
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Title</th>
+                            <th><input name="title" type="text" class="form-control"></th>
+                        </tr>
+                        <tr>
+                            <th>Detail</th>
+                            <th><textarea name="detail" class="form-control"></textarea></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" class="btn btn-primary">
+                            </td>
+                        </tr>
+                    </table>
+               </form>
            </div>
        </div>
    </div>

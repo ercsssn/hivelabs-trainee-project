@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\RoomType;
 
 class RoomTypeController extends Controller
 {
@@ -34,7 +35,12 @@ class RoomTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new RoomType;
+        $data->title = $request->title;
+        $data->detail = $request->detail;
+        $data->save();
+
+        return redirect('admin/roomtype/create')->with('success','Room type has been added.');
     }
 
     /**
