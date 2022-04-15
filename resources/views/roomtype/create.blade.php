@@ -12,7 +12,7 @@
        </div>
        <div class="card-body">  
            @if(Session::has('success'))
-           <p class="text-success">{{ session('success') }}</p>
+           <p class="alert alert-success">{{ session('success') }}</p>
            @endif
            <div class="table-responsive">
                <form method="POST" action="{{ url('admin/roomtype') }}">
