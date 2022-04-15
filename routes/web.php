@@ -21,4 +21,4 @@ Route::get('admin', function () {
 });
 
 //RoomType Routes
-Route::resource('roomtype',RoomTypeController::class);
+Route::resource('admin/roomtype',RoomTypeController::class);
