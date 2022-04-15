@@ -28,15 +28,19 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Title</td>
-                            <td>
-                                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        @if ($data)
+                            @foreach ($data as $d)  {{-- I just used $d as the iteration variable --}}
+                            <tr>
+                                <td>{{ $d->id }}</td>   
+                                <td>{{ $d->title }}</td>
+                                <td>
+                                    <a href="{{ url('admin/roomtype/'.$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ url('admin/roomtype/'.$d->id).'/edit' }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ url('admin/roomtype/'.$d->id).'/delete' }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
