@@ -93,6 +93,8 @@ class RoomTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        RoomType::where('id',$id)->delete();
+
+        return redirect('admin/roomtype/')->with('success','Room type has been deleted.');
     }
 }

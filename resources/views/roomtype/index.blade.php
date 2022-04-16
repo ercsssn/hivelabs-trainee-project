@@ -11,6 +11,9 @@
             </h6>
         </div>
         <div class="card-body">
+            @if(Session::has('success'))
+            <p class="alert alert-success">{{ session('success') }}</p>
+            @endif
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -36,7 +39,7 @@
                                 <td>
                                     <a href="{{ url('admin/roomtype/'.$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('admin/roomtype/'.$d->id).'/edit' }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                    <a href="{{ url('admin/roomtype/'.$d->id).'/delete' }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                    <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this room type?')" href="{{ url('admin/roomtype/'.$d->id).'/delete' }}"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach
