@@ -7,7 +7,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Rooms
-                <a href="{{ url('admin/room/create') }}" class="float-right btn btn-success btn-sm">Add New</a>
+                <a href="{{ url('admin/rooms/create') }}" class="float-right btn btn-success btn-sm">Add New</a>
             </h6>
         </div>
         <div class="card-body">
@@ -40,9 +40,9 @@
                                 <td>{{ $d->roomType->title}}</td>   
                                 <td>{{ $d->title }}</td>
                                 <td>
-                                    <a href="{{ url('admin/room/'.$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                    <a href="{{ url('admin/room/'.$d->id).'/edit' }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                    <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this room?')" href="{{ url('admin/room/'.$d->id).'/delete' }}"><i class="fa fa-trash"></i></a>
+                                    <a href="{{ url('admin/rooms/'.$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ url('admin/rooms/'.$d->id).'/edit' }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this room?')" href="{{ url('admin/rooms/'.$d->id).'/delete' }}"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach

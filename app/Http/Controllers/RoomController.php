@@ -43,7 +43,7 @@ class RoomController extends Controller
         $data->title = $request->title;
         $data->save();
 
-        return redirect('admin/room/create')->with('success','Room has been added.');
+        return redirect('admin/rooms/create')->with('success','Room has been added.');
     }
 
     /**
@@ -86,7 +86,7 @@ class RoomController extends Controller
         $data->title = $request->title;
         $data->save();
 
-        return redirect('admin/room/'.$id.'/edit')->with('success','Room has been updated.');
+        return redirect('admin/rooms/'.$id.'/edit')->with('success','Room has been updated.');
     }
 
     /**
@@ -99,6 +99,6 @@ class RoomController extends Controller
     {
         Room::where('id',$id)->delete();
 
-        return redirect('admin/room/')->with('success','Room has been deleted.');
+        return redirect('admin/rooms/')->with('success','Room has been deleted.');
     }
 }

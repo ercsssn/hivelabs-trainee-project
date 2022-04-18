@@ -7,7 +7,7 @@
    <div class="card shadow mb-4">
        <div class="card-header py-3">
            <h6 class="m-0 font-weight-bold text-primary">Add Room
-            <a href="{{ url('admin/room/') }}" class="float-right btn btn-success btn-sm">View All</a>
+            <a href="{{ url('admin/rooms/') }}" class="float-right btn btn-success btn-sm">View All</a>
            </h6>
        </div>
        <div class="card-body">  
@@ -15,7 +15,7 @@
            <p class="alert alert-success">{{ session('success') }}</p>
            @endif
            <div class="table-responsive">
-               <form method="POST" action="{{ url('admin/room/'.$data->id) }}">
+               <form method="POST" action="{{ url('admin/rooms/'.$data->id) }}">
                     @csrf
                     @method('put')
                     <table class="table table-bordered">
