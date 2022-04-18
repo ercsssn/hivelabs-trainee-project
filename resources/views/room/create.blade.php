@@ -19,6 +19,17 @@
                     @csrf
                     <table class="table table-bordered">
                         <tr>
+                            <th>Select Room Type</th>
+                            <td>
+                                <select name="rt_id" class="form-control">
+                                    <option value="0">--- Select ---</option>
+                                    @foreach ($roomtypes as $rt )
+                                    <option value="{{$rt->id}}">{{$rt->title}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Title</th>
                             <td><input name="title" type="text" class="form-control"></td>
                         </tr>
