@@ -70,6 +70,21 @@
                     </div>
                 </div>
             </li>
+
+            <!-- Room Master -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#roomMaster"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-door-closed"></i>
+                    <span>Room</span>
+                </a>
+                <div id="roomMaster" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url('admin/room/create') }}">Add New</a>
+                        <a class="collapse-item" href="{{ url('admin/room') }}">View All</a>
+                    </div>
+                </div>
+            </li>
         </ul>
         <!-- End of Sidebar -->
 
