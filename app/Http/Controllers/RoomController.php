@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\RoomType;
 use App\Room;
 
-class RoomTypeController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,8 @@ class RoomTypeController extends Controller
      */
     public function create()
     {
-        return view('room.create');
+        $roomtypes = RoomType::all();
+        return view('room.create', ['roomtypes' => $roomtypes]);
     }
 
     /**
@@ -38,10 +39,11 @@ class RoomTypeController extends Controller
     public function store(Request $request)
     {
         $data = new Room;
+        $data->roomtype_id = $request->rt_id;
         $data->title = $request->title;
         $data->save();
 
-        return redirect('admin/room/create')->with('success','Room type has been added.');
+        return redirect('admin/room/create')->with('success','Room has been added.');
     }
 
     /**
@@ -52,8 +54,9 @@ class RoomTypeController extends Controller
      */
     public function show($id)
     {
+        $roomtypes = RoomType::all();
         $data = Room::find($id);
-        return view('room.show', ['data'=>$data]);
+        return view('room.show', ['data'=>$data, 'roomtypes' => $roomtypes]);
     }
 
     /**
@@ -64,8 +67,9 @@ class RoomTypeController extends Controller
      */
     public function edit($id)
     {
+        $roomtypes = RoomType::all();
         $data = Room::find($id);
-        return view('room.edit', ['data'=>$data]);
+        return view('room.edit', ['data'=>$data, 'roomtypes' => $roomtypes]);
     }
 
     /**
@@ -78,10 +82,11 @@ class RoomTypeController extends Controller
     public function update(Request $request, $id)
     {
         $data = Room::find($id);
+        $data->roomtype_id = $request->rt_id;
         $data->title = $request->title;
         $data->save();
 
-        return redirect('admin/room/'.$id.'/edit')->with('success','Room type has been updated.');
+        return redirect('admin/room/'.$id.'/edit')->with('success','Room has been updated.');
     }
 
     /**
@@ -94,6 +99,6 @@ class RoomTypeController extends Controller
     {
         Room::where('id',$id)->delete();
 
-        return redirect('admin/room/')->with('success','Room type has been deleted.');
+        return redirect('admin/room/')->with('success','Room has been deleted.');
     }
 }
