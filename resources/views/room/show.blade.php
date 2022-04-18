@@ -13,9 +13,13 @@
        <div class="card-body">  
            <div class="table-responsive">
                 <table class="table table-bordered">
-                    <tr>
-                        <th>Title</th>
-                        <td>{{ $data->title }}</td>
+                    <tr class="d-flex">
+                        <th class="col-2">Title</th>
+                        <td class="col-5">{{ $data->title }}</td>
+                    </tr>
+                    <tr class="d-flex">
+                        <th class="col-2">Room Type</th>
+                        <td class="col-5">{{ $data->roomType->title }}</td>
                     </tr>
                 </table>
 
