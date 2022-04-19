@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" href="{{asset('img/hivelabs_favicon.png')}}">
     <title>Project: AMS</title>
 
     <!-- Custom fonts for this template-->
@@ -82,6 +82,21 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ url('admin/rooms/create') }}">Add New</a>
                         <a class="collapse-item" href="{{ url('admin/rooms') }}">View All</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Tenant Master -->
+            <li class="nav-item">
+                <a class="nav-link @if(!request()->is('admin/tenant*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#TenantMaster"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-users"></i>
+                    <span>Tenants</span>
+                </a>
+                <div id="TenantMaster" class="collapse @if(request()->is('admin/tenant*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url('admin/tenant/create') }}">Add New</a>
+                        <a class="collapse-item" href="{{ url('admin/tenant') }}">View All</a>
                     </div>
                 </div>
             </li>
@@ -307,7 +322,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Ericsson the Great 2022</span>
+                        <span>Copyright &copy; Ericsson the Kamote 2022</span>
                     </div>
                 </div>
             </footer>
