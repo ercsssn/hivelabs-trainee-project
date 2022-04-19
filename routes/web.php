@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+//Admin Login
+Route::get('admin/login', 'AdminController@login');
+Route::post('admin/login', 'AdminController@check_login');
+
 // Admin Dashboard
 Route::get('admin', function () {
     return view('dashboard');
