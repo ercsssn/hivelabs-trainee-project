@@ -39,7 +39,7 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $data = new Room;
-        $data->roomtype_id = $request->rt_id;
+        $data->room_type_id = $request->rt_id;
         $data->title = $request->title;
         $data->save();
 
@@ -82,7 +82,7 @@ class RoomController extends Controller
     public function update(Request $request, $id)
     {
         $data = Room::find($id);
-        $data->roomtype_id = $request->rt_id;
+        $data->room_type_id = $request->rt_id;
         $data->title = $request->title;
         $data->save();
 

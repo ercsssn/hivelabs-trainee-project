@@ -25,7 +25,7 @@
                                 <select name="rt_id" class="form-control">
                                     <option value="0">--- Select ---</option>
                                     @foreach ($roomtypes as $rt )
-                                    <option @if($data->roomtype_id == $rt->id) 
+                                    <option @if($data->room_type_id == $rt->id) 
                                     selected @endif value="{{$rt->id}}">{{$rt->title}}</option>
                                     @endforeach
                                 </select>
