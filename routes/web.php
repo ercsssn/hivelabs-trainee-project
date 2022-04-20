@@ -37,3 +37,6 @@ Route::resource('admin/rooms',RoomController::class);
 //Tenant Routes
 Route::get('admin/tenant/{id}/delete','TenantController@destroy');
 Route::resource('admin/tenant',TenantController::class);
+
+//Delete Image
+Route::get('admin/roomtypeimage/delete/{id}','RoomTypeController@destroy_image');
