@@ -15,7 +15,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $data = RoomType::all();
+        $data = RoomType::all();  //paginate| select
         return view('roomtype.index', ['data'=>$data]);
     }
 
@@ -69,7 +69,7 @@ class RoomTypeController extends Controller
      */
     public function show($id)
     {
-        $data = RoomType::find($id);
+        $data = RoomType::find($id); //dependency injection from model
         return view('roomtype.show', ['data'=>$data]);
     }
 
@@ -81,8 +81,8 @@ class RoomTypeController extends Controller
      */
     public function edit($id)
     {
-        $data = RoomType::find($id);
-        return view('roomtype.edit', ['data'=>$data]);
+        $data = RoomType::find($id); //dependency injection from model
+        return view('roomtype.edit', ['data'=>$data]);  //use with
     }
 
     /**

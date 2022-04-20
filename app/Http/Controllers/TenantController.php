@@ -93,7 +93,7 @@ class TenantController extends Controller
     {
         $request->validate([
             'full_name'=>'required',
-            'email'=>'required|email',
+            'email'=>'required|email',    //whitelist |tri-catch
             'mobile_number'=>'required',
         ]);
 
