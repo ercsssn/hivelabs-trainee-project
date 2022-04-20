@@ -8,6 +8,6 @@ class RoomType extends Model
 {
     function roomtypeimgs() 
     {
-        return this->hasMany(RoomTypeImage::class,'room_type-id');
+        return $this->hasMany(RoomTypeImage::class,'room_type_id');
     }
 }
