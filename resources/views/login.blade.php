@@ -46,17 +46,17 @@
                                     <form class="user" method="POST" action="{{url('admin/login')}}">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
+                                            <input type="text" class="form-control form-control-user" @if(Cookie::has('adminuser')) value="{{Cookie::get('adminuser')}}" @endif
                                                 id="username" name="username" aria-describedby="emailHelp"
                                                 placeholder="Username">
                                         </div>
                                         <div class="form-group">
-                                            <input name="password" type="password" class="form-control form-control-user"
+                                            <input name="password" @if(Cookie::has('adminpwd')) value="{{Cookie::get('adminpwd')}}" @endif type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input type="checkbox" @if(Cookie::has('adminuser')) checked @endif name="rememberme" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
