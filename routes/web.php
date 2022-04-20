@@ -19,6 +19,7 @@ Route::get('/', function () {
 //Admin Login
 Route::get('admin/login', 'AdminController@login');
 Route::post('admin/login', 'AdminController@check_login');
+Route::get('admin/logout', 'AdminController@logout');
 
 // Admin Dashboard
 Route::get('admin', function () {

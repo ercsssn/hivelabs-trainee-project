@@ -34,4 +34,9 @@ class AdminController extends Controller
 
     }
     //Logout
+    function logout() 
+    {
+        session()->forget(['adminData']);
+        return redirect('admin/login');
+    }
 }
