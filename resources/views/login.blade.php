@@ -54,6 +54,22 @@
                                             <input name="password" @if(Cookie::has('adminpwd')) value="{{Cookie::get('adminpwd')}}" @endif type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
+
+                                        @if ($errors->any()) 
+                                        <div style="margin-top: 15px;" class="alert alert-danger">
+                                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
+                                        @if(Session::has('msg'))
+                                        <p class="alert alert-danger" style="margin-top: 15px;">{{ session('msg') }}</p>
+                                        @endif
+
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" @if(Cookie::has('adminuser')) checked @endif name="rememberme" class="custom-control-input" id="customCheck">
@@ -64,20 +80,6 @@
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Log In">
                                     </form>
 
-                                    @if ($errors->any())
-                                    <div style="margin-top: 15px;" class="alert alert-danger">
-                                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                    @endif
-
-                                    @if(Session::has('msg'))
-                                    <p class="alert alert-danger" style="margin-top: 15px;">{{ session('msg') }}</p>
-                                    @endif
 
                                     <hr>
                                     <div class="text-center">
