@@ -101,6 +101,17 @@ class RoomTypeController extends Controller
         $data->detail = $request->detail;
         $data->save();
 
+        if ($request->hasFile('imgs')) {
+            foreach ($request->file('imgs') as $img) {
+                $imgPath = $img->store('uploads');
+                $imgData = new RoomTypeImage;
+                $imgData->room_type_id = $data->id;
+                $imgData->img_src = $imgPath;
+                $imgData->img_alt = $request->title;
+                $imgData->save();
+            }
+        }
+
         return redirect('admin/roomtype/'.$id.'/edit')->with('success','Room type has been updated.');
     }
 
