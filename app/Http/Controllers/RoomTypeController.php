@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RoomType;
 use App\RoomTypeImage;
+use Illuminate\Support\Facades\Storage;
 
 class RoomTypeController extends Controller
 {
@@ -118,6 +119,9 @@ class RoomTypeController extends Controller
 
     public function destroy_image($img_id)
     {
+        $data = RoomTypeImage::where('id',$img_id)->first();
+        Storage::delete($data->img_src);
+        
         RoomTypeImage::where('id',$img_id)->delete();
         return response()->json(['bool'=>true]);
     }

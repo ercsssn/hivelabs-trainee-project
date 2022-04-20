@@ -78,9 +78,11 @@
 
                 },
                 success:function(res){
-                    console.log(res);
-                    $(".imgcol"+_img_id).remove();
+                    if (res.bool == true){
+                        $(".imgcol"+_img_id).remove();
+                    }
                     _vm.removeClass('disabled');
+                    
                 }
             })
         })
