@@ -45,6 +45,7 @@
                                 <td>
                                     <a href="{{ url('admin/employee/'.$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('admin/employee/'.$d->id).'/edit' }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ url('admin/employee/payment/'.$d->id. '/add') }}" class="btn btn-dark btn-sm"><i class="fa fa-money-bill"></i></a>
                                     <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this employee?')" href="{{ url('admin/employee/'.$d->id).'/delete' }}"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>

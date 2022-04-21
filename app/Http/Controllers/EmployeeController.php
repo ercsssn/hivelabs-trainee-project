@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Department;
 use App\Employee;
+use App\EmployeePayment;
 
 class EmployeeController extends Controller
 {
@@ -119,6 +120,27 @@ class EmployeeController extends Controller
         Employee::where('id',$id)->delete();
 
         return redirect('admin/employee/')->with('success','Employee has been deleted.');
+    }
+
+    // Add Payment
+
+    function add_payment($employee_id) 
+    {
+        return view('employeepayment.create',['employee_id'=>$employee_id]);
+    }
+
+    function save_payment(Request $request, $employee_id) 
+    {
+        $data = new EmployeePayment;
+
+        $data->employee_id   = $request->employee_id;
+        $data->amount        = $request->amount;
+        $data->payment_date  = $request->amount_date;
+
+        $data->save();
+
+        return redirect('admin/employee/payment/'.$employee_id.'/add')->with('success','Data has been added.');
+
     }
 }
 

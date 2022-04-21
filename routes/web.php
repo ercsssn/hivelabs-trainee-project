@@ -45,6 +45,10 @@ Route::get('admin/roomtypeimage/delete/{id}','RoomTypeController@destroy_image')
 Route::get('admin/department/{id}/delete','EmployeeDepartmentController@destroy');
 Route::resource('admin/department',EmployeeDepartmentController::class);
 
-//Employee Routes
+//Employee Payment
+Route::get('admin/employee/payment/{id}/add','EmployeeController@add_payment');
+Route::post('admin/employee/payment/{id}','EmployeeController@save_payment');
+
+//Employee CRUD
 Route::get('admin/employee/{id}/delete','EmployeeController@destroy');
 Route::resource('admin/employee',EmployeeController::class);
