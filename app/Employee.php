@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     function department() {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class,'department_id');
     }
 }

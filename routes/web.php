@@ -44,3 +44,7 @@ Route::get('admin/roomtypeimage/delete/{id}','RoomTypeController@destroy_image')
 //Department Routes
 Route::get('admin/department/{id}/delete','EmployeeDepartmentController@destroy');
 Route::resource('admin/department',EmployeeDepartmentController::class);
+
+//Employee Routes
+Route::get('admin/employee/{id}/delete','EmployeeController@destroy');
+Route::resource('admin/employee',EmployeeController::class);

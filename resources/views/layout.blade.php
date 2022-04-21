@@ -105,7 +105,7 @@
             <li class="nav-item">
                 <a class="nav-link @if(!request()->is('admin/department*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#DepartmentMaster"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-id-card-alt"></i>
                     <span>Departments</span>
                 </a>
                 <div id="DepartmentMaster" class="collapse @if(request()->is('admin/department*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -115,7 +115,21 @@
                     </div>
                 </div>
             </li>
-            
+
+            <!-- Employee Master -->
+            <li class="nav-item">
+                <a class="nav-link @if(!request()->is('admin/employee*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#EmployeeMaster"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-users-cog"></i>
+                    <span>Employees</span>
+                </a>
+                <div id="EmployeeMaster" class="collapse @if(request()->is('admin/employee*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url('admin/employee/create') }}">Add New</a>
+                        <a class="collapse-item" href="{{ url('admin/employee') }}">View All</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
