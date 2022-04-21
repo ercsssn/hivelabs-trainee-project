@@ -122,6 +122,15 @@ class EmployeeController extends Controller
         return redirect('admin/employee/')->with('success','Employee has been deleted.');
     }
 
+    //All Payments
+    function all_payments(Request $request, $employee_id) 
+    {
+        $data = EmployeePayment::where('employee_id',$employee_id)->get();
+        $employee = Employee::find($employee_id);
+        return view('employeepayment.index',['employee_id'=>$employee_id, 'data'=>$data, 'employee'=>$employee]);
+    }
+
+
     // Add Payment
 
     function add_payment($employee_id) 
