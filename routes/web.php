@@ -22,9 +22,7 @@ Route::post('admin/login', 'AdminController@check_login');
 Route::get('admin/logout', 'AdminController@logout');
 
 // Admin Dashboard
-Route::get('admin', function () {
-    return view('dashboard');
-});
+Route::get('admin', 'AdminController@dashboard');
 
 //RoomType Routes
 Route::get('admin/roomtype/{id}/delete','RoomTypeController@destroy');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
+use App\Rent;
 use Cookie;
 
 class AdminController extends Controller
@@ -36,13 +37,29 @@ class AdminController extends Controller
         }else{
             return redirect('admin/login')->with('msg','Invalid Username or Password!');
         }
-
-
     }
+
     //Logout
     function logout() 
     {
         session()->forget(['adminData']);
         return redirect('admin/login');
     }
+
+    function dashboard() 
+    {
+        $rent = Rent::selectRaw('count(id) as total_rent, check_in_date')->groupBy('check_in_date')->get();
+
+        $labels=[];
+        $data=[];
+
+        foreach($rent as $r) {
+            $labels[] = $r['check_in_date'];
+            $data[] = $r['total_rent'];
+        }
+
+        return view('dashboard',['labels'=>$labels, 'data'=>$data]);
+    }
+
+
 }
