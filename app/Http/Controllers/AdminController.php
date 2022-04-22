@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Rent;
@@ -57,6 +58,17 @@ class AdminController extends Controller
             $labels[] = $r['check_in_date'];
             $data[] = $r['total_rent'];
         }
+
+        //For Pie Chart
+        $rt_rent = DB::table('room_types as rt')
+        ->join('rooms as r','r.room_type_id','=','rt.id')
+        ->join('rents as re','re.room_id','=','r.id')
+        ->select('rt.*','r.*','re.*',DB::raw('count(re.id) as total_rent'))
+        ->groupBy('r.room_type_id')
+        ->get();
+
+        echo '<pre>';
+        print_r($re_rent);
 
         return view('dashboard',['labels'=>$labels, 'data'=>$data]);
     }
