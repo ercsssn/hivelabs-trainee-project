@@ -54,3 +54,8 @@ Route::get('admin/employee/payment/{id}/{employee_id}/delete','EmployeeControlle
 //Employee CRUD
 Route::get('admin/employee/{id}/delete','EmployeeController@destroy');
 Route::resource('admin/employee',EmployeeController::class);
+
+//Rent
+Route::get('admin/rent/{id}/delete','RentController@destroy');
+Route::get('admin/rent/available_rooms/{check_in_date}','RentController@available_rooms');
+Route::resource('admin/rent',RentController::class);
