@@ -6,7 +6,7 @@
    <!-- DataTales Example -->
    <div class="card shadow mb-4">
        <div class="card-header py-3">
-           <h6 class="m-0 font-weight-bold text-primary">Add Tenant
+           <h6 class="m-0 font-weight-bold text-primary">Room Rent
             <a href="{{ url('admin/tenant') }}" class="float-right btn btn-success btn-sm">View All</a>
            </h6>
        </div>
@@ -27,13 +27,13 @@
            <p class="alert alert-success">{{ session('success') }}</p>
            @endif
            <div class="table-responsive">
-               <form method="POST" enctype="multipart/form-data" action="{{ url('admin/tenant') }}">
+               <form method="POST" enctype="multipart/form-data" action="{{ url('admin/rent') }}">
                     @csrf
                     <table class="table table-bordered">
                         <tr>
                             <th>Select Tenant<span class="text-danger">*</span></th>
                             <td>
-                                <select class="form-control">
+                                <select class="form-control" name="tenant_id">
                                     <option>--- Select Tenant ---</option>
                                     @foreach ($tenants as $tenant )
                                     <option value="{{$tenant->id}}">{{$tenant->full_name}}</option>
@@ -52,7 +52,7 @@
                         <tr>
                             <th>Available Rooms<span class="text-danger">*</span></th>
                             <td>
-                                <select class="form-control room">
+                                <select class="form-control room-list" name="room_id">
 
                                 </select>
                             </td>
@@ -83,13 +83,20 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $(".checkin-date").on('blur',function(){
-            var _checkindate=$(this).val();
+            let _checkindate=$(this).val();
             //Ajax sir
             $.ajax({
                 url:"{{url('admin/rent')}}/available_rooms/" + _checkindate,
                 dataType:'json',
+                beforeSend: function() {
+                    $(".room-list").html('<option>--- Loading ---</option>');
+                },
                 success:function(res) {
-                    console.log(res);
+                    let _html='';
+                    $.each(res.data, function(index,row) {
+                        _html+='<option value="'+row.id+'">'+row.title+'</option>';
+                    });
+                    $(".room-list").html(_html);
                 }
             })
         })

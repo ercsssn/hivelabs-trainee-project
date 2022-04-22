@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Tenant;
+use App\Rent;
 
 class RentController extends Controller
 {
@@ -37,7 +38,25 @@ class RentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tenant_id'=>'required',
+            'room_id'=>'required',
+            'check_in_date'=>'required',
+            'check_out_date'=>'required',
+            'total_adults'=>'required',
+            'total_children'=>'required',
+        ]);
+
+        $data = new Rent;
+        $data->tenant_id      = $request->tenant_id;
+        $data->room_id        = $request->room_id;
+        $data->check_in_date  = $request->check_in_date;
+        $data->check_out_date = $request->check_out_date;
+        $data->total_adults   = $request->total_adults;
+        $data->total_children = $request->total_children;
+        $data->save();
+
+        return redirect('admin/rent/create')->with('success','Renter has been added.');
     }
 
     /**
@@ -89,6 +108,6 @@ class RentController extends Controller
     function available_rooms(Request $request, $check_in_date) 
     {
         $availrooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM rents WHERE '$check_in_date' BETWEEN check_in_date AND check_out_date)");
-        return response()->json($availrooms);
+        return response()->json(['data'=>$availrooms]);
     }
 }
