@@ -7,7 +7,7 @@
    <div class="card shadow mb-4">
        <div class="card-header py-3">
            <h6 class="m-0 font-weight-bold text-primary">{{$employee->full_name}}Payments
-               <a href="{{ url('admin/employee/payment/'.$data->id. '/add') }}" class="float-right btn btn-success btn-sm">Add New Payment</a> 
+               <a href="{{ url('admin/employee/payment/'.$employee_id.'/add') }}" class="float-right btn btn-success btn-sm">Add New Payment</a> 
            </h6>
        </div>
        <div class="card-body">
@@ -40,7 +40,7 @@
                                <td>{{ $d->amount}}</td>   
                                <td>{{ $d->payment_date ?? 'unknown' }}</td>
                                <td>
-                                   <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this employee?')" href="{{ url('admin/employee/payment/'.$d->id).'/delete' }}"><i class="fa fa-trash"></i></a>
+                                   <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this record?')" href="{{ url('admin/employee/payment/'.$d->id.'/'.$employee_id).'/delete' }}"><i class="fa fa-trash"></i></a>
                                </td>
                            </tr>
                            @endforeach

@@ -151,5 +151,12 @@ class EmployeeController extends Controller
         return redirect('admin/employee/payment/'.$employee_id.'/add')->with('success','Data has been added.');
 
     }
+
+    public function delete_payment($id, $employee_id)
+    {
+        EmployeePayment::where('id',$id)->delete();
+
+        return redirect('admin/employee/payments/'.$employee_id)->with('success','Record has been deleted.');
+    }
 }
 

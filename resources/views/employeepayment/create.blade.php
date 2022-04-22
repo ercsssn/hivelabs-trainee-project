@@ -7,7 +7,7 @@
    <div class="card shadow mb-4">
        <div class="card-header py-3">
            <h6 class="m-0 font-weight-bold text-primary">Add Employee Payment
-            <a href="{{ url('admin/employee/payment/'.$employee_id) }}" class="float-right btn btn-success btn-sm">View All</a>
+            <a href="{{ url('admin/employee/payments/'.$employee_id) }}" class="float-right btn btn-success btn-sm">View All</a>
            </h6>
        </div>
        <div class="card-body">  
@@ -15,7 +15,7 @@
            <p class="alert alert-success">{{ session('success') }}</p>
            @endif
            <div class="table-responsive">
-               <form enctype="multipart/form-data" method="POST" action="{{ url('admin/employee/payment/'.$employee_id) }}">
+               <form enctype="multipart/form-data" method="POST" action="{{ url('admin/employee/payment/'.$employee_id) }}">    
                     @csrf
                     <table class="table table-bordered">
                         <tr>

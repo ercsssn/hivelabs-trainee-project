@@ -49,6 +49,7 @@ Route::resource('admin/department',EmployeeDepartmentController::class);
 Route::get('admin/employee/payments/{id}','EmployeeController@all_payments');     
 Route::get('admin/employee/payment/{id}/add','EmployeeController@add_payment');
 Route::post('admin/employee/payment/{id}','EmployeeController@save_payment');
+Route::get('admin/employee/payment/{id}/{employee_id}/delete','EmployeeController@delete_payment');
 
 //Employee CRUD
 Route::get('admin/employee/{id}/delete','EmployeeController@destroy');
