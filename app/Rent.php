@@ -8,11 +8,11 @@ class Rent extends Model
 {
     function tenant() 
     {
-        return $this->belongsTo(Tenant:class);
+        return $this->belongsTo(Tenant::class);
     }
 
     function room() 
     {
-        return $this->belongsTo(Room:class);
+        return $this->belongsTo(Room::class);
     }
 }
