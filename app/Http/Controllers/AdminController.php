@@ -61,14 +61,14 @@ class AdminController extends Controller
 
         //For Pie Chart
         $rt_rent = DB::table('room_types as rt')
-        ->join('rooms as r','r.room_type_id','=','rt.id')
-        ->join('rents as re','re.room_id','=','r.id')
-        ->select('rt.*','r.*','re.*',DB::raw('count(re.id) as total_rent'))
-        ->groupBy('r.room_type_id')
-        ->get();
+           ->join('rooms as r','r.room_type_id','=','rt.id')
+           ->join('rents as re','re.room_id','=','r.id')
+           ->select('rt.*','r.*','re.*',DB::raw('count(re.id) as total_rent'))
+           ->groupBy('r.room_type_id')
+           ->get();
 
         echo '<pre>';
-        print_r($re_rent);
+        print_r($rt_rent);
 
         return view('dashboard',['labels'=>$labels, 'data'=>$data]);
     }
