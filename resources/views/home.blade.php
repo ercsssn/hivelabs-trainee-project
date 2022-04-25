@@ -7,6 +7,7 @@
     <title>Home Page</title>
     <link rel="shortcut icon" href="{{asset('img/hivelabs_favicon.png')}}">
     <link rel="stylesheet" href="{{asset('bs5/bootstrap.min.css')}}">
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('bs5/bootstrap.bundle.min.js')}}" defer></script>
 </head>
 <body>
@@ -52,10 +53,37 @@
         </button>
       </div>
       {{-- Slider Section End --}}
+      
+      {{-- Gallery Section Start --}}
+      <div class="container my-4">
+        <h2 class="text-center pb-2 border-bottom">Rooms</h2>
+        <div class="row my-4">
+          @foreach ($roomTypes as $rtype)
+          <div class="col md-3">
+            <div class="card">
+              <h6 class="card-header">{{$rtype->title}}</h6>
+              <div class="card-body">
+                @foreach ($rtype->roomtypeimgs as $index => $img )
+                <a href="{{ asset($img->img_src) }}" data-lightbox="rgallery{{$rtype->id}}">
+                  @if ($index > 0)
+                  <img class="img-fluid hide" style="height: 230px; width: 270px;" src="{{ asset($img->img_src) }}" alt="roomtype photo">
+                  @else
+                  <img class="img-fluid" style="height: 230px; width: 270px;" src="{{ asset($img->img_src) }}" alt="roomtype photo">
+                  @endif
+                </a>
+                @endforeach
+                
+              </div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
+      {{-- Gallery Section End --}}
 
       {{-- Services Section Start --}}
 
-      <div class="container my-4">
+      <div class="my-4 services">
         <h2 class="text-center pb-2 border-bottom">Services</h2>
         <div class="row my-4">
           <div class="col-md-4">
@@ -98,46 +126,39 @@
       </div>
 
       {{-- Services Section End --}}
-
-      {{-- Gallery Section Start --}}
-      <div class="container my-4">
-        <h2 class="text-center pb-2 border-bottom">Rooms Gallery</h2>
-        <div class="row my-4">
-          <div class="col md-3">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-title"><a href="">Room Type Pictures</a></p>
+      
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                  <span>Copyright &copy; Ericsson the Kamote 2022</span>
               </div>
-            </div>
           </div>
-          <div class="col md-3">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-title"><a href="">Room Type Pictures</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col md-3">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-title"><a href="">Room Type Pictures</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col md-3">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-title"><a href="">Room Type Pictures</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
+      </footer>
+      <!-- End of Footer -->
 
-      </div>
+      
+      <link rel="stylesheet" type="text/css" href="{{asset('vendor/lightbox2-2.11.3/dist/css/lightbox.min.css')}}">
+      <script type="text/javascript" src="{{asset('vendor/lightbox2-2.11.3/dist/js/lightbox.min.js')}}"></script>
 
+<style>
+.services {
+  margin: 0px; 
+  padding-left: 100px; 
+  padding-right: 100px; 
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background:#bebebe; 
+}
 
-      {{-- Gallery Section End --}}
+.hide {
+  display: none;
+}
 
+h2 {
+  border-color: black;
+}
 
+</style>
 </body>
 </html>
