@@ -57,4 +57,5 @@ Route::get('admin/rent/available_rooms/{check_in_date}','RentController@availabl
 Route::resource('admin/rent',RentController::class);
 
 Route::get('login', 'TenantController@login');
+Route::post('tenant/login', 'TenantController@tenant_login');
 Route::get('register', 'TenantController@register');

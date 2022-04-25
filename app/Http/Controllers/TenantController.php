@@ -141,7 +141,25 @@ class TenantController extends Controller
     //Login
     function login() 
     {
-        return view('login');
+        return view('frontlogin');
+    }
+
+    function tenant_login(Request $request) 
+    {
+        $email = $request->email;
+        $pwd = sha1($request->password);
+        $creds = Tenant::where(['email'=>$email, 'password'=>$pwd])->count();
+
+        if ($creds > 0) {
+            $creds = Tenant::where(['email'=>$email, 'password'=>$pwd])->count();
+            session(['tenantlogin'=>true,'data'=>$creds]);
+            return redirect('/');
+        }else{
+            return redirect('login')->with('error','Email/Password does not exist.');
+
+        }
+
+        
     }
 
     //Login
