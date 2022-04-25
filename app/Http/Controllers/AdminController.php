@@ -53,7 +53,6 @@ class AdminController extends Controller
 
         $labels=[];
         $data=[];
-
         foreach($rent as $r) {
             $labels[] = $r['check_in_date'];
             $data[] = $r['total_rent'];
@@ -67,11 +66,16 @@ class AdminController extends Controller
            ->groupBy('r.room_type_id')
            ->get();
 
-        echo '<pre>';
-        print_r($rt_rent);
+        $plabels=[];
+        $pdata=[];
+        foreach($rt_rent as $re) {
+            $plabels[] = $re->detail;
+            $pdata[] = $re->total_rent;
+        }
 
-        return view('dashboard',['labels'=>$labels, 'data'=>$data]);
+        // echo '<pre>';
+        // print_r($rt_rent);
+
+        return view('dashboard',['labels'=>$labels, 'data'=>$data,'plabels'=>$plabels, 'pdata'=>$pdata]);
     }
-
-
 }
