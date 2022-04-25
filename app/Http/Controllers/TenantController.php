@@ -43,8 +43,12 @@ class TenantController extends Controller
             'mobile_number'=>'required',
         ]);
 
-
-        $imgPath = $request->file('photo')->store('uploads/');
+        if ($request->hasFile('photo')) {
+            $imgPath = $request->file('photo')->store('uploads/');
+        }else {
+            $imgPath=null;
+        }
+        
 
         $data = new Tenant;
         $data->full_name         = $request->full_name;
@@ -54,6 +58,11 @@ class TenantController extends Controller
         $data->permanent_address = $request->permanent_address;
         $data->photo             = $imgPath;
         $data->save();
+
+        $ref = $request->ref;
+        if ($ref == 'front'){
+            return redirect('register')->with('success','Registration Successful');
+        }
 
         return redirect('admin/tenant/create')->with('success','Tenant has been added.');
     }
@@ -127,5 +136,17 @@ class TenantController extends Controller
         Tenant::where('id',$id)->delete();
 
         return redirect('admin/tenant/')->with('success','Tenant has been deleted.');
+    }
+
+    //Login
+    function login() 
+    {
+        return view('login');
+    }
+
+    //Login
+    function register() 
+    {
+        return view('register');
     }
 }

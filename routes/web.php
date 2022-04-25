@@ -55,3 +55,6 @@ Route::resource('admin/employee',EmployeeController::class);
 Route::get('admin/rent/{id}/delete','RentController@destroy');
 Route::get('admin/rent/available_rooms/{check_in_date}','RentController@available_rooms');
 Route::resource('admin/rent',RentController::class);
+
+Route::get('login', 'TenantController@login');
+Route::get('register', 'TenantController@register');
