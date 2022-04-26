@@ -56,6 +56,9 @@ class RentController extends Controller
         $data->total_children = $request->total_children;
         $data->save();
 
+        if ($request->ref == 'front') {
+            return redirect('rent')->with('success','Rent request submitted.');
+        }
         return redirect('admin/rent/create')->with('success','Renter has been added.');
     }
 
@@ -109,5 +112,10 @@ class RentController extends Controller
     {
         $availrooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM rents WHERE '$check_in_date' BETWEEN check_in_date AND check_out_date)");
         return response()->json(['data'=>$availrooms]);
+    }
+
+    public function front_rent()
+    {
+        return view('rentform');
     }
 }

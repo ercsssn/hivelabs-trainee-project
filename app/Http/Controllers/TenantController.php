@@ -151,8 +151,8 @@ class TenantController extends Controller
         $creds = Tenant::where(['email'=>$email, 'password'=>$pwd])->count();
 
         if ($creds > 0) {
-            $creds = Tenant::where(['email'=>$email, 'password'=>$pwd])->count();
-            session(['tenantlogin'=>true,'data'=>$creds]);
+            $cred = Tenant::where(['email'=>$email, 'password'=>$pwd])->get();
+            session(['tenantlogin'=>true,'data'=>$cred]);
             return redirect('/');
         }else{
             return redirect('login')->with('error','Email/Password does not exist.');

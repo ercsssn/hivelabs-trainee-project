@@ -60,3 +60,5 @@ Route::get('login', 'TenantController@login');
 Route::post('tenant/login', 'TenantController@tenant_login');
 Route::get('register', 'TenantController@register');
 Route::get('logout', 'TenantController@logout');
+
+Route::get('rent', 'RentController@front_rent');
