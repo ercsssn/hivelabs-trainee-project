@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Tenant;
 use App\Rent;
+use App\RoomType;
 
 class RentController extends Controller
 {
@@ -111,7 +112,15 @@ class RentController extends Controller
     function available_rooms(Request $request, $check_in_date) 
     {
         $availrooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM rents WHERE '$check_in_date' BETWEEN check_in_date AND check_out_date)");
-        return response()->json(['data'=>$availrooms]);
+
+        $data = [];
+        foreach($availrooms as $room)
+        {
+            $roomTypes = RoomType::find($room->room_type_id);
+            $data[] = ['room'=>$room, 'roomtype'=>$roomTypes];
+        }
+
+        return response()->json(['data'=>$data]);   
     }
 
     public function front_rent()
