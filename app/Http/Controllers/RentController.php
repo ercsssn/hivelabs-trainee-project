@@ -15,9 +15,9 @@ class RentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        echo ($request->roomprice);
     }
 
     /**
@@ -39,49 +39,51 @@ class RentController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'tenant_id'=>'required',
-        //     'room_id'=>'required',
-        //     'check_in_date'=>'required',
-        //     'check_out_date'=>'required',
-        //     'total_adults'=>'required',
-        //     'total_children'=>'required',
-        // ]);
-
-        // $data = new Rent;
-        // $data->tenant_id      = $request->tenant_id;
-        // $data->room_id        = $request->room_id;
-        // $data->check_in_date  = $request->check_in_date;
-        // $data->check_out_date = $request->check_out_date;
-        // $data->total_adults   = $request->total_adults;
-        // $data->total_children = $request->total_children;
-        // $data->save();
-
-        // if ($request->ref == 'front') {
-        //     return redirect('rent')->with('success','Rent request submitted.');
-        // }
-        // return redirect('admin/rent/create')->with('success','Renter has been added.');
-
-
-        \Stripe\Stripe::setApiKey('sk_test_51KsgjJL6Qqk9yP2mqVLCwp2dhDSKtRY42LoAcfhEU0OEtvMMyBRGvHJr1vWpwRUXivxhCoJOVNhfj1nksAQtxtQl00UE63J1dr');
-        $session = \Stripe\Checkout\Session::create([
-        'payment_method_types' => ['card'],
-        'line_items' => [[
-            'price_data' => [
-                'currency' => 'php',
-                'product_data'=> [
-                    'name' => 't-shirt',
-                ],
-                'unit_amount' => 2000,
-            ],
-            'quantity' => 1,
-        ]],
-        'mode' => 'payment',
-        'success_url' => 'http://test.com/rent/success?session_id={CHECKOUT_SESSION_ID}',
-        'cancel_url' => 'http://test.com/rent/fail',
+        
+        $request->validate([
+            'tenant_id'=>'required',
+            'room_id'=>'required',
+            'check_in_date'=>'required',
+            'check_out_date'=>'required',
+            'total_adults'=>'required',
+            'total_children'=>'required',
+            'roomprice'=>'required',
         ]);
 
-        return redirect($session->url);
+        $data = new Rent;
+        $data->tenant_id      = $request->tenant_id;
+        $data->room_id        = $request->room_id;
+        $data->check_in_date  = $request->check_in_date;
+        $data->check_out_date = $request->check_out_date;
+        $data->total_adults   = $request->total_adults;
+        $data->total_children = $request->total_children;
+        $data->save();
+
+        if ($request->ref == 'front') {
+            \Stripe\Stripe::setApiKey('sk_test_51KsgjJL6Qqk9yP2mqVLCwp2dhDSKtRY42LoAcfhEU0OEtvMMyBRGvHJr1vWpwRUXivxhCoJOVNhfj1nksAQtxtQl00UE63J1dr');
+            $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'php',
+                    'product_data'=> [
+                        'name' => 'room',
+                    ],
+                    'unit_amount' => $request->roomprice*100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => 'http://test.com/rent/success?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'http://test.com/rent/fail',
+            ]);
+
+            return redirect($session->url);
+        // return redirect('rent')->with('success','Rent request submitted.');
+        }
+        
+        return redirect('admin/rent/create')->with('success','Renter has been added.');
+
     }
 
  
