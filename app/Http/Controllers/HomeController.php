@@ -8,10 +8,23 @@ use App\RoomTypeImage;
 
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     // Home Page
-    function home() 
+    function home()
     {
-        $roomTypes = RoomType::all();
-        return view('home',['roomTypes'=>$roomTypes]);
+        $roomTypes=RoomType::all();
+
+        return View('home',['roomTypes'=>$roomTypes]);
     }
+
 }

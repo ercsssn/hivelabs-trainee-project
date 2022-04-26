@@ -64,4 +64,3 @@ Route::get('logout', 'TenantController@logout');
 Route::get('rent', 'RentController@front_rent');
 Route::get('rent/success', 'RentController@rent_payment_success');
 Route::get('rent/fail', 'RentController@rent_payment_fail');
-

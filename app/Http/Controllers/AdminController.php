@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Rent;
@@ -72,7 +73,7 @@ class AdminController extends Controller
             $plabels[] = $re->detail;
             $pdata[] = $re->total_rent;
         }
-
+        
         // echo '<pre>';
         // print_r($rt_rent);
 
