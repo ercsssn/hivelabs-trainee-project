@@ -158,13 +158,18 @@ class TenantController extends Controller
             return redirect('login')->with('error','Email/Password does not exist.');
 
         }
-
-        
     }
 
-    //Login
+    //Register
     function register() 
     {
         return view('register');
+    }
+
+    // Logout
+    function logout() 
+    {
+        session()->forget(['tenantlogin','data']);
+        return redirect('login');
     }
 }

@@ -26,7 +26,7 @@
       {{-- Slider Section End --}}
       
       {{-- Gallery Section Start --}}
-      <div class="container my-4">
+      <div class="container my-4" id="rooms">
         <h2 class="text-center pb-2 border-bottom">Rooms</h2>
         <div class="row my-4">
           @foreach ($roomTypes as $rtype)
@@ -54,7 +54,7 @@
 
       {{-- Services Section Start --}}
 
-      <div class="my-4 services">
+      <div class="my-4 services" id="services">
         <h2 class="text-center pb-2 border-bottom">Services</h2>
         <div class="row my-4">
           <div class="col-md-4">
