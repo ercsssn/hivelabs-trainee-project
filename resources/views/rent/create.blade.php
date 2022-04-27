@@ -7,7 +7,7 @@
    <div class="card shadow mb-4">
        <div class="card-header py-3">
            <h6 class="m-0 font-weight-bold text-primary">Room Rent
-            <a href="{{ url('admin/tenant') }}" class="float-right btn btn-success btn-sm">View All</a>
+            <a href="{{ url('admin/rent') }}" class="float-right btn btn-success btn-sm">View All</a>
            </h6>
        </div>
        <div class="card-body"> 
@@ -55,6 +55,7 @@
                                 <select class="form-control room-list" name="room_id">
 
                                 </select>
+                                <p class="mt-3">Price: PHP <span class="show-room-price"></span></p>
                             </td>
                         </tr>
                         <tr>
@@ -67,6 +68,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">
+                                <input type="hidden" name="roomprice" class="room-price" value="">
                                 <input type="submit" class="btn btn-primary">
                             </td>
                         </tr>
@@ -94,13 +96,23 @@
                 success:function(res) {
                     let _html='';
                     $.each(res.data, function(index,row) {
-                        _html+='<option value="'+row.id+'">'+row.title+'</option>';
+                        _html+='<option data-price="'+row.roomtype.price+'" value="'+row.room.id+'">'+row.room.title+' - '+row.roomtype.title+'</option>';
                     });
                     $(".room-list").html(_html);
+
+                    let _selectedPrice = $(".room-list").find('option:selected').attr('data-price');
+                    $(".room-price").val(_selectedPrice);
+                    $(".show-room-price").text(_selectedPrice);
                 }
             })
         })
-    }) 
+    });
+
+    $(document).on("change",".room-list",function(){
+        let _selectedPrice = $(this).find('option:selected').attr('data-price');
+        $(".room-price").val(_selectedPrice);
+        $(".show-room-price").text(_selectedPrice);
+    });
 
 </script>
 @endsection
