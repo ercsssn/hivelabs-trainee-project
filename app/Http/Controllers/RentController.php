@@ -17,7 +17,8 @@ class RentController extends Controller
      */
     public function index(Request $request)
     {
-        echo ($request->roomprice);
+        $rent = Rent::all();
+        return view('rent.index', ['data'=>$rent]);
     }
 
     /**

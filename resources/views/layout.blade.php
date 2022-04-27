@@ -138,9 +138,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{url('admin/rent/create')}}">
+                <a class="nav-link" href="{{url('admin/rent')}}">
                     <i class="fas fa-hotel"></i>
-                    <span>Rents</span></a>
+                    <span>Rent Records</span></a>
             </li>
 
             <!-- Nav Item - Dashboard -->
