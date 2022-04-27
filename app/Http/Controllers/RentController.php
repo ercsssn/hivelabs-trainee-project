@@ -131,7 +131,9 @@ class RentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Rent::where('id',$id)->delete();
+
+        return redirect('admin/rent/')->with('success','Record has been deleted.');
     }
 
     //Check available rooms

@@ -35,6 +35,7 @@
                                             <th>Room Type</th>
                                             <th>CheckIn Date</th>
                                             <th>CheckOut Date</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -45,6 +46,7 @@
                                             <th>Room Type</th>
                                             <th>CheckIn Date</th>
                                             <th>CheckOut Date</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -56,6 +58,7 @@
                                             <td>{{$rent->room->roomType->title ?? 'unknown'}}</td>
                                             <td>{{$rent->check_in_date}}</td>
                                             <td>{{$rent->check_out_date}}</td>
+                                            <td><a href="{{url('admin/rent/'.$rent->id.'/delete')}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
