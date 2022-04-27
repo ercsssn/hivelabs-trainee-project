@@ -51,21 +51,20 @@ class RentController extends Controller
             'roomprice'=>'required',
         ]);
 
-        $data = new Rent;
-        $data->tenant_id      = $request->tenant_id;
-        $data->room_id        = $request->room_id;
-        $data->check_in_date  = $request->check_in_date;
-        $data->check_out_date = $request->check_out_date;
-        $data->total_adults   = $request->total_adults;
-        $data->total_children = $request->total_children;
-        if ($request->ref == 'front') {
-            $data->ref = 'user';
-        }else {
-            $data->ref = 'admin';
-        }
-        $data->save();
+        
 
         if ($request->ref == 'front') {
+            $sessionData = [
+                'tenant_id'=>$request->tenant_id,
+                'room_id'=>$request->room_id,
+                'check_in_date'=>$request->check_in_date,
+                'check_out_date'=>$request->check_out_date,
+                'total_adults'=>$request->total_adults,
+                'total_children'=>$request->total_children,
+                'roomprice'=>$request->roomprice,
+                'ref'=>$request->ref
+            ];
+            session($sessionData);
             \Stripe\Stripe::setApiKey('sk_test_51KsgjJL6Qqk9yP2mqVLCwp2dhDSKtRY42LoAcfhEU0OEtvMMyBRGvHJr1vWpwRUXivxhCoJOVNhfj1nksAQtxtQl00UE63J1dr');
             $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
@@ -73,7 +72,7 @@ class RentController extends Controller
                 'price_data' => [
                     'currency' => 'php',
                     'product_data'=> [
-                        'name' => 'room',
+                        'name' => $request->room_id,
                     ],
                     'unit_amount' => $request->roomprice*100,
                 ],
@@ -86,10 +85,24 @@ class RentController extends Controller
 
             return redirect($session->url);
         // return redirect('rent')->with('success','Rent request submitted.');
-        }
-        
-        return redirect('admin/rent/create')->with('success','Renter has been added.');
+        }else {
+            $data = new Rent;
+            $data->tenant_id      = $request->tenant_id;
+            $data->room_id        = $request->room_id;
+            $data->check_in_date  = $request->check_in_date;
+            $data->check_out_date = $request->check_out_date;
+            $data->total_adults   = $request->total_adults;
+            $data->total_children = $request->total_children;
+            
+            if ($request->ref == 'front') {
+                $data->ref = 'user';
+            }else {
+                $data->ref = 'admin';
+            }
+            $data->save();
 
+            return redirect('admin/rent/create')->with('success','Renter has been added.');
+        }
     }
 
  
@@ -167,12 +180,27 @@ class RentController extends Controller
         $session = \Stripe\Checkout\Session::retrieve($request->get('session_id'));
         $tenant = \Stripe\Customer::retrieve($session->customer);
         if ($session->payment_status == 'paid') {
-            echo 'success';
+
+            $data = new Rent;
+            $data->tenant_id      = session('tenant_id');
+            $data->room_id        = session('room_id');
+            $data->check_in_date  = session('check_in_date');
+            $data->check_out_date = session('check_out_date');
+            $data->total_adults   = session('total_adults');
+            $data->total_children = session('total_children');
+            if (session('ref') == 'front') {
+                $data->ref = 'user';
+            }else {
+                $data->ref = 'admin';
+            }
+            $data->save();
+            
+            return view('rent.success');
         }
     }
 
     function rent_payment_fail(Request $request)
     {
-        echo 'Fail';
+        return view('rent.fail');
     }
 }

@@ -36,7 +36,7 @@
                             <select class="form-control room-list" name="room_id">
 
                             </select>
-                            <p class="mt-3">Price: PHP <span class="show-room-price"></span></p>
+                            <p class="mt-3">Price: PHP <span class="show-room-price"></span> per month</p>
                         </td>
                     </tr>
                     <tr>

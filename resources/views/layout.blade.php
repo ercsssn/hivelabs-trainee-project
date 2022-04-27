@@ -37,11 +37,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('admin/') }}">
                 <div class="sidebar-brand-icon">
                     <img src="{{asset('img/hivelabs_favicon.png')}}" alt="hivelabs icon">
                 </div>
-                <div class="sidebar-brand-text mx-3">Hive Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Hive Admin</div>
             </a>
 
             <!-- Divider -->
