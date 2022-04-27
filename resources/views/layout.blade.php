@@ -143,6 +143,21 @@
                     <span>Rent Records</span></a>
             </li>
 
+            <!-- Services Master -->
+            <li class="nav-item">
+                <a class="nav-link @if(!request()->is('admin/service*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#ServiceMaster"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Services</span>
+                </a>
+                <div id="ServiceMaster" class="collapse @if(request()->is('admin/service*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url('admin/service/create') }}">Add New</a>
+                        <a class="collapse-item" href="{{ url('admin/service') }}">View All</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="{{url('admin/logout')}}">
