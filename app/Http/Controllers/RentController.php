@@ -58,6 +58,11 @@ class RentController extends Controller
         $data->check_out_date = $request->check_out_date;
         $data->total_adults   = $request->total_adults;
         $data->total_children = $request->total_children;
+        if ($request->ref == 'front') {
+            $data->ref = 'user';
+        }else {
+            $data->ref = 'admin';
+        }
         $data->save();
 
         if ($request->ref == 'front') {
