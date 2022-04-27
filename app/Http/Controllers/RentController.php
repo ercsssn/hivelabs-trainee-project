@@ -72,7 +72,7 @@ class RentController extends Controller
                 'price_data' => [
                     'currency' => 'php',
                     'product_data'=> [
-                        'name' => $request->room_id,
+                        'name' => 'Room',
                     ],
                     'unit_amount' => $request->roomprice*100,
                 ],
