@@ -50,7 +50,7 @@
                     <tr>
                         <td colspan="2">
                             <input type="hidden" name="tenant_id" value="{{ session('data')[0]->id }}">
-                            <input type="hidden" name="roomprice" class="room-price" value="front">
+                            <input type="hidden" name="roomprice" class="room-price" value="">
                             <input type="hidden" name="ref" value="front">
                             <input type="submit" class="btn btn-primary">
                         </td>
@@ -80,7 +80,7 @@
                     $(".room-list").html(_html);
 
                     let _selectedPrice = $(".room-list").find('option:selected').attr('data-price');
-                    $(".roomprice").val(_selectedPrice);
+                    $(".room-price").val(_selectedPrice);
                     $(".show-room-price").text(_selectedPrice);
                 }
             })
@@ -89,7 +89,7 @@
 
     $(document).on("change",".room-list",function(){
         let _selectedPrice = $(this).find('option:selected').attr('data-price');
-        $(".roomprice").val(_selectedPrice);
+        $(".room-price").val(_selectedPrice);
         $(".show-room-price").text(_selectedPrice);
     });
 </script>
