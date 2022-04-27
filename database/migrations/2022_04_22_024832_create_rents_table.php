@@ -22,6 +22,7 @@ class CreateRentsTable extends Migration
             $table->string('total_adults');
             $table->string('total_children');
             $table->string('ref');
+            $table->integer('days');
             $table->timestamps();
         });
     }
