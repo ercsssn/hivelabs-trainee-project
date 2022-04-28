@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@home');
+Route::get('service/{id}', 'HomeController@service_detail');
 
 //Admin Login
 Route::get('admin/login', 'AdminController@login');

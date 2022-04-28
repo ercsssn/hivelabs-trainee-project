@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RoomType;
 use App\RoomTypeImage;
+use App\Service;
 
 class HomeController extends Controller
 {
@@ -22,9 +23,20 @@ class HomeController extends Controller
     // Home Page
     function home()
     {
-        $roomTypes=RoomType::all();
+        $services  = Service::all();
+        $roomTypes = RoomType::all();
 
-        return View('home',['roomTypes'=>$roomTypes]);
+        return View('home',['roomTypes'=>$roomTypes, 'services'=>$services]);
     }
+
+    // Service Detail Page
+    function service_detail(Request $request, $id)
+    {
+        $service  = Service::find($id);
+
+        return View('servicedetail',['service'=>$service]);
+    }
+
+    
 
 }

@@ -56,44 +56,20 @@
 
       <div class="my-4 services" id="services">
         <h2 class="text-center pb-2 border-bottom">Services</h2>
+        @foreach($services as $service)
         <div class="row my-4">
           <div class="col-md-4">
-            <img src="{{asset('img/catering.jpg')}}" class="img-thumbnail" alt="catering">
+             <a href="{{url('service/'.$service->id)}}"></a><img style="height: 300px; width: 400px;" src="{{ asset($service->photo) }}" alt="service-photo">
           </div>
           <div class="col-md-8">
-            <h3>Catering</h3>
-            <p>Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.</p>
+            <h3>{{$service->title}}</h3>
+            <h6>{{$service->short_desc}}</h6>
             <p>
-              <a href="" class="btn btn-sm btn-primary">Read More</a>
+              <a href="{{url('service/'.$service->id)}}" class="btn btn-sm btn-primary">Read More</a>
             </p>
           </div>
         </div>
-
-        <div class="row my-4">
-          <div class="col-md-4">
-            <img src="{{asset('img/laundry.jpg')}}" class="img-thumbnail" alt="catering">
-          </div>
-          <div class="col-md-8">
-            <h3>Laundry</h3>
-            <p>Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.</p>
-            <p>
-              <a href="" class="btn btn-sm btn-primary">Read More</a>
-            </p>
-          </div>
-        </div>
-
-        <div class="row my-4">
-          <div class="col-md-4">
-            <img src="{{asset('img/cleaning.jpg')}}" class="img-thumbnail" alt="catering">
-          </div>
-          <div class="col-md-8">
-            <h3>Cleaning</h3>
-            <p>Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.</p>
-            <p>
-              <a href="" class="btn btn-sm btn-primary">Read More</a>
-            </p>
-          </div>
-        </div>
+        @endforeach
       </div>
 
       {{-- Services Section End --}}

@@ -32,7 +32,6 @@
               <a class="nav-link" href="{{url('login')}}">Login</a>
               <span class="nav-link">|</span>
               <a class="nav-link" href="{{url('register')}}">Register</a>
-              <a class="nav-link btn px-3 mx-3" style="background: #ce3003" href="#">Rent Now!</a>
               @endif
             </div>
           </div>

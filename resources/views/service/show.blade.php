@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <th>Photo</th>
-                        <td><img style="height: 300px; width: 300px;" src="{{ asset($data->photo) }}" alt="tenant-photo">
+                        <td><img style="height: 300px; width: 300px;" src="{{ asset($data->photo) }}" alt="service-photo">
                         </td>
                     </tr>
                 </table>
