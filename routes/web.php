@@ -25,6 +25,10 @@ Route::get('admin/logout', 'AdminController@logout');
 // Admin Dashboard
 Route::get('admin', 'AdminController@dashboard');
 
+//Banner Routes
+Route::get('admin/banner/{id}/delete','BannerController@destroy');
+Route::resource('admin/banner',BannerController::class);
+
 //RoomType Routes
 Route::get('admin/roomtype/{id}/delete','RoomTypeController@destroy');
 Route::resource('admin/roomtype',RoomTypeController::class);
