@@ -54,8 +54,8 @@
       
           <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item"><a href="{{url('/')}}" class="nav-link px-2 text-muted">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            <li class="nav-item"><a href="{{url('faqs')}}" class="nav-link px-2 text-muted">FAQs</a></li>
+            <li class="nav-item"><a href="{{url('about_us')}}" class="nav-link px-2 text-muted">About</a></li>
           </ul>
         </footer>
       </div>
