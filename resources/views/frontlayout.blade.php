@@ -22,6 +22,7 @@
           <div class="navbar-nav">
               <a class="nav-link px-4" href="#rooms">Rooms</a>
               <a class="nav-link px-3" aria-current="page" href="#services">Services</a>
+              <a class="nav-link px-3" aria-current="page" href="#reviews">Reviews</a>
           </div>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto px-3">
