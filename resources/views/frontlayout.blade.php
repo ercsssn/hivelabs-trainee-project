@@ -26,8 +26,9 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto px-3">
               @if(Session::has('tenantlogin'))
-              <a class="nav-link" href="{{url('logout')}}">Logout</a>
+              <a class="nav-link btn px-3 mx-3" href="{{url('tenant/add_review')}}">Add Review</a>
               <a class="nav-link btn px-3 mx-3" style="background: #ce3003" href="{{url('rent')}}">Rent Now!</a>
+              <a class="nav-link" href="{{url('logout')}}">Logout</a>
               @else
               <a class="nav-link" href="{{url('login')}}">Login</a>
               <span class="nav-link">|</span>

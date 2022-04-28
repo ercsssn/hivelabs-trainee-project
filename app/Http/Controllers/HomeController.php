@@ -37,6 +37,12 @@ class HomeController extends Controller
         return View('servicedetail',['service'=>$service]);
     }
 
+    // Reviews
+    function add_review()
+    {
+        return view('addreview');
+    }
+
     
 
 }

@@ -69,3 +69,6 @@ Route::get('rent/fail', 'RentController@rent_payment_fail');
 //Services CRUD
 Route::get('admin/service/{id}/delete','ServiceController@destroy');
 Route::resource('admin/service',ServiceController::class);
+
+//Reviews
+Route::get('tenant/add_review','HomeController@add_review');
