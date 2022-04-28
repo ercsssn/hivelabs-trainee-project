@@ -11,12 +11,12 @@
        @if(Session::has('success'))
        <p class="alert alert-success">{{ session('success') }}</p>
        @endif
-    <form enctype="multipart/form-data" method= "POST" action="{{url('tenant/review')}}">
+    <form enctype="multipart/form-data" method= "POST" action="{{url('tenant/save_review')}}">
         @csrf
         <table class="table table-bordered"> 
             <tr>
                 <th>Review<span class="text-danger">*</span></th>
-                <td><textarea class="form-control" rows="8"></textarea></td>
+                <td><textarea name="review" class="form-control" rows="8"></textarea></td>
             </tr>
             <tr>
                 <input type="hidden" name="ref" value="front">

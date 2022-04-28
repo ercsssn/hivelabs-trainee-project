@@ -72,3 +72,4 @@ Route::resource('admin/service',ServiceController::class);
 
 //Reviews
 Route::get('tenant/add_review','HomeController@add_review');
+Route::post('tenant/save_review','HomeController@save_review');
