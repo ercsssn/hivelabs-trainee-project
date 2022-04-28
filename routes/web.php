@@ -77,3 +77,4 @@ Route::get('tenant/add_review','HomeController@add_review');
 Route::post('tenant/save_review','HomeController@save_review');
 Route::get('admin/review/{id}/delete','AdminController@remove_review');
 Route::get('admin/reviews','AdminController@reviews');
+Route::post('save_msg','PageController@save_msg');

@@ -10,27 +10,38 @@
         Sincerely,
         Name, [title, ie: CEO, Founder, etc.]</p>
 
-    <h3 class="mb-3">Contact Us</h3>          
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+    
+        <h3 class="mb-3">Contact Us</h3>          
         @if(Session::has('success'))
         <p class="alert alert-success">{{ session('success') }}</p>
         @endif
-    <form enctype="multipart/form-data" method= "POST" action="{{url('tenant/save_review')}}">
+    <form enctype="multipart/form-data" method= "POST" action="{{url('save_msg')}}">
         @csrf
         <table class="table table-bordered"> 
             <tr>
-                <th>Full Name</th>
+                <th>Full Name <span class="text-danger">*</span></th>
                 <td><input type="text" name="full_name" class="form-control"></td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th>Email <span class="text-danger">*</span></th>
                 <td><input type="email" name="email" class="form-control"></td>
             </tr>
             <tr>
-                <th>Subject</th>
+                <th>Subject <span class="text-danger">*</span></th>
                 <td><input type="text" name="subject" class="form-control"></td>
             </tr>
             <tr>
-                <th>Message<span class="text-danger">*</span></th>
+                <th>Message <span class="text-danger">*</span></th>
                 <td><textarea name="msg" class="form-control" rows="8"></textarea></td>
             </tr>
             <tr>

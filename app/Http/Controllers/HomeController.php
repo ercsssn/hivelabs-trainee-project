@@ -7,6 +7,7 @@ use App\RoomType;
 use App\RoomTypeImage;
 use App\Service;
 use App\Review;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    // Home Page
+    public function html_email()
+    {
+        $data = array('name'=>'John Ericsson Robarios');
+        Mail::send('mail',$data, function($message){
+            $message->to('ercsssn@gmail.com','John Ericsson')->subject('Laravel HTML Testing Mail');
+            $message->from('ercsssn@gmail.com','John Ericsson');
+            
+        });
+    }
+    
+     // Home Page
     function home()
     {
         $services  = Service::all();
