@@ -160,6 +160,13 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
+                <a class="nav-link" href="{{url('admin/reviews')}}">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <span>Reviews</span></a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
                 <a class="nav-link" href="{{url('admin/logout')}}">
                     <i class="fas fa-fw fa-sign-out-alt"></i>
                     <span>Logout</span></a>

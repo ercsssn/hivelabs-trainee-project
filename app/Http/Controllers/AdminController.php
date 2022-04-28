@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Rent;
+use App\Review;
 use Cookie;
 
 class AdminController extends Controller
@@ -78,5 +79,19 @@ class AdminController extends Controller
         // print_r($rt_rent);
 
         return view('dashboard',['labels'=>$labels, 'data'=>$data,'plabels'=>$plabels, 'pdata'=>$pdata]);
+    }
+
+    public function reviews()
+    {
+        $data = Review::all();
+        return view('adminreviews', ['data'=>$data]);
+
+    }
+
+    public function remove_review($id)
+    {
+        Review::where('id',$id)->delete();
+
+        return redirect('admin/reviews/')->with('success','Review has been deleted.');
     }
 }
