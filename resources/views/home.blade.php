@@ -54,7 +54,7 @@
 
       {{-- Services Section Start --}}
 
-      <div class="my-4 services" id="services">
+      <div class="my-0 services" id="services">
         <h2 class="text-center pb-2 border-bottom">Services</h2>
         @foreach($services as $service)
         <div class="row my-4">
@@ -73,28 +73,35 @@
       </div>
 
       {{-- Services Section End --}}
-      
-      <!-- Footer -->
-      <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <p class="col-md-4 mb-0 text-muted">© 2022 Ericsson the Kamote</p>
-      
-          <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-          </a>
-      
-          <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Rooms</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Services</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-          </ul>
-        </footer>
-      </div>
-      <!-- End of Footer -->
 
-      
+      {{-- Slider Section Start --}}
+      <h2 class="text-center mt-4 pb-2 border-bottom">Reviews</h2>
+      <div id="reviews" class="my-0 carousel my-0 slide p-5 bg-dark text-white border mb-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          @foreach ($reviews as $index => $review )
+          <div class="carousel-item @if($index==0) active @endif">
+            <figure class="text-center">
+              <blockquote class="blockquote">
+                <p>{{$review->review}}</p>
+              </blockquote>
+              <figcaption class="blockquote-footer">
+                {{$review->tenant->full_name }}
+              </figcaption>
+            </figure>
+          </div>
+          @endforeach
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#reviews  " data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#reviews" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      {{-- Slider Section End --}}
+
       <link rel="stylesheet" type="text/css" href="{{asset('vendor/lightbox2-2.11.3/dist/css/lightbox.min.css')}}">
       <script type="text/javascript" src="{{asset('vendor/lightbox2-2.11.3/dist/js/lightbox.min.js')}}"></script>
 

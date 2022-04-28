@@ -26,8 +26,9 @@ class HomeController extends Controller
     {
         $services  = Service::all();
         $roomTypes = RoomType::all();
+        $reviews = Review::all();
 
-        return View('home',['roomTypes'=>$roomTypes, 'services'=>$services]);
+        return View('home',['roomTypes'=>$roomTypes, 'services'=>$services, 'reviews'=>$reviews]);
     }
 
     // Service Detail Page
