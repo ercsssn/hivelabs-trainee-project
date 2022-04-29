@@ -7,6 +7,7 @@ use App\RoomType;
 use App\RoomTypeImage;
 use App\Service;
 use App\Review;
+use App\Banner;
 use Mail;
 
 class HomeController extends Controller
@@ -35,11 +36,12 @@ class HomeController extends Controller
      // Home Page
     function home()
     {
+        $banners  = Banner::where('publish_status', 'on')->get();
         $services  = Service::all();
         $roomTypes = RoomType::all();
         $reviews = Review::all();
 
-        return View('home',['roomTypes'=>$roomTypes, 'services'=>$services, 'reviews'=>$reviews]);
+        return View('home',['roomTypes'=>$roomTypes, 'services'=>$services, 'reviews'=>$reviews, 'banners'=>$banners]);
     }
 
     // Service Detail Page

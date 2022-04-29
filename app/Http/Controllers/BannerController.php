@@ -103,9 +103,9 @@ class BannerController extends Controller
         
 
         $data = Banner::find($id);
-        $data->banner_src         = $imgPath;
-        $data->alt_text           = $request->full_name;
-        $data->publish_status = $request->email;
+        $data->banner_src     = $imgPath;
+        $data->alt_text       = $request->alt_text;
+        $data->publish_status = $request->publish_status;
         $data->save();
 
         return redirect('admin/banner/'.$id.'/edit')->with('success','Banner has been updated.');

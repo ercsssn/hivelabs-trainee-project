@@ -1,4 +1,4 @@
-<h1>Complaint Report</h1>
+<h1>Inquiry Message</h1>
 <table border="1">  
     <tr>
         <th>Full Name</th>

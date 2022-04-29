@@ -4,15 +4,11 @@
       {{-- Slider Section Start --}}
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{{asset('img/banner-1.png')}}" class="d-block w-100" alt="banner">
+          @foreach ($banners as $index => $banner )
+          <div class="carousel-item @if($index==0) active @endif">
+            <img src="{{ asset($banner->banner_src) }}" class="d-block w-100" alt="{{ $banner->alt_text}}">
           </div>
-          <div class="carousel-item">
-            <img src="{{asset('img/banner-2.png')}}" class="d-block w-100" alt="banner">
-          </div>
-          <div class="carousel-item">
-            <img src="{{asset('img/banner-3.jpg')}}" class="d-block w-100" alt="banner">
-          </div>
+          @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
