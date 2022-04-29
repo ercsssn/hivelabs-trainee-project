@@ -7,7 +7,7 @@
    <div class="card shadow mb-4">
        <div class="card-header py-3">
            <h6 class="m-0 font-weight-bold text-primary">Edit Tenant
-            <a href="{{ url('admin/tenant/') }}" class="float-right btn btn-success btn-sm">View All</a>
+            <a href="{{ url('admin/banner/') }}" class="float-right btn btn-success btn-sm">View All</a>
            </h6>
        </div>
        <div class="card-body">
@@ -27,34 +27,25 @@
            <p class="alert alert-success">{{ session('success') }}</p>
            @endif
            <div class="table-responsive">
-               <form method="POST" enctype="multipart/form-data" action="{{ url('admin/tenant/'.$data->id) }}">
+               <form method="POST" enctype="multipart/form-data" action="{{ url('admin/banner/'.$data->id) }}">
                     @csrf
                     @method('put')
                     <table class="table table-bordered">
                         <tr>
-                            <th>Full Name <span class="text-danger">*</span></th>
-                            <td><input value="{{$data->full_name}}" name="full_name" type="text" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <th>Email <span class="text-danger">*</span></th>
-                            <td><input value="{{$data->email}}" name="email" type="email" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <th>Mobile Number <span class="text-danger">*</span></th>
-                            <td><input value="{{$data->mobile_number}}" name="mobile_number" type="text" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <th>Photo</th>
+                            <th>Banner <span class="text-danger">*</span></th>
                             <td>
-                                <input name="photo" type="file">
-                                <input type="hidden" name="prev_photo" value="{{ $data->photo }}">
-                                <img style="height: 300px; width: 300px;" src="{{ asset($data->photo) }}" alt="tenant-photo">
-
+                                <input name="banner_src" type="file">
+                                <input type="hidden" name="prev_photo" value="{{ $data->banner_src }}">
+                                <img style="height: 100px; width: 400px;" src="{{ asset($data->banner_src) }}" alt="banner-photo">
                             </td>
                         </tr>
                         <tr>
-                            <th>Permanent Address</th>
-                            <td><textarea name="permanent_address" type="text" class="form-control">{{$data->permanent_address}}</textarea></td>
+                            <th>Alt Text <span class="text-danger">*</span></th>
+                            <td><input value="{{$data->alt_text}}" name="alt_text" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>Publish Status</th>
+                            <td><input @if($data->publish_status=='on') checked @endif name="publish_status" type="checkbox"></td>
                         </tr>
                         <tr>
                             <td colspan="2">

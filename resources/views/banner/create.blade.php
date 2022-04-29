@@ -39,7 +39,7 @@
                             <td><input name="alt_text" type="text" class="form-control"></td>
                         </tr>
                         <tr>
-                            <th>Publish Status <span class="text-danger">*</span></th>
+                            <th>Publish Status</th>
                             <td><input name="publish_status" type="checkbox"></td>
                         </tr>
                         <tr>

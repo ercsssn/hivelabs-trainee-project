@@ -39,11 +39,10 @@
                             @foreach ($data as $d)  {{-- I just used $d as the iteration variable --}}
                             <tr>
                                 <td>{{ $d->id }}</td>
-                                <td>{{ $d->banner_src }}</td>   
+                                <td><img style="height: 100px; width: 400px;" src="{{ asset($d->banner_src) }}" alt="banner-photo"></td>   
                                 <td>{{ $d->alt_text }}</td>
                                 <td>{{ $d->publish_status }}</td>
                                 <td>
-                                    <a href="{{ url('admin/banner/'.$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('admin/banner/'.$d->id).'/edit' }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                                     <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this banner?')" href="{{ url('admin/banner/'.$d->id).'/delete' }}"><i class="fa fa-trash"></i></a>
                                 </td>

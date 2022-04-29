@@ -39,7 +39,6 @@ class BannerController extends Controller
         $request->validate([
             'banner_src'=>'required|image',
             'alt_text'=>'required',
-            'publish_status'=>'required',
         ]);
 
         if ($request->hasFile('banner_src')) {
@@ -92,25 +91,21 @@ class BannerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'full_name'=>'required',
-            'email'=>'required|email',    //whitelist |tri-catch
-            'mobile_number'=>'required',
+            'prev_photo'=>'required',
+            'alt_text'=>'required',    //whitelist |try-catch
         ]);
 
-        if ($request->hasFile('photo')) {
-            $imgPath = $request->file('photo')->store('uploads/');
+        if ($request->hasFile('banner_src')) {
+            $imgPath = $request->file('banner_src')->store('uploads/');
         }else{
             $imgPath = $request->prev_photo;
         }
         
 
-        $data = Tenant::find($id);
-        $data->full_name         = $request->full_name;
-        $data->email             = $request->email;
-        $data->password          = sha1($request->password);
-        $data->mobile_number     = $request->mobile_number;
-        $data->permanent_address = $request->permanent_address;
-        $data->photo             = $imgPath;
+        $data = Banner::find($id);
+        $data->banner_src         = $imgPath;
+        $data->alt_text           = $request->full_name;
+        $data->publish_status = $request->email;
         $data->save();
 
         return redirect('admin/banner/'.$id.'/edit')->with('success','Banner has been updated.');
