@@ -38,12 +38,12 @@ class BannerController extends Controller
     {
         $request->validate([
             'banner_src'=>'required|image',
-            'alt_text'=>'required|email',
+            'alt_text'=>'required',
             'publish_status'=>'required',
         ]);
 
         if ($request->hasFile('banner_src')) {
-            $imgPath = $request->file('photo')->store('uploads/');
+            $imgPath = $request->file('banner_src')->store('uploads/');
         }else {
             $imgPath=null;
         }
