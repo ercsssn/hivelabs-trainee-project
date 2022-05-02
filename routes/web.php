@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewRoomAddition;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,14 @@ Route::post('tenant/save_review','HomeController@save_review');
 Route::get('admin/review/{id}/delete','AdminController@remove_review');
 Route::get('admin/reviews','AdminController@reviews');
 Route::post('save_msg','PageController@save_msg');
+
+
+//Add New Room Event
+Route::get('admin/rooms/event', function() {
+    event(new NewRoomAddition('Room added'));
+});
+
+
+Route::get('admin/rooms/listen', function() {
+    return view('listen');
+});
