@@ -29,4 +29,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    created() {
+        Echo.channel('room-added')
+        .listen('NewRoomAddition', (e)=>{
+            alert('GGWP, alaws refresh refresh!');
+        });
+    }
 });
