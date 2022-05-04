@@ -86,11 +86,11 @@ Route::post('save_msg','PageController@save_msg');
 
 
 //Add New Room Event
-Route::get('admin/rooms/event', function() {
+Route::get('/event', function() {
     event(new NewRoomAddition('Room added'));
 });
 
 
-Route::get('admin/rooms/listen', function() {
+Route::get('/listen', function() {
     return view('listen');
 });
