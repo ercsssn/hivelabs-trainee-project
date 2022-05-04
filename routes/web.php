@@ -85,12 +85,16 @@ Route::get('admin/reviews','AdminController@reviews');
 Route::post('save_msg','PageController@save_msg');
 
 
-//Add New Room Event
-Route::get('/event', function() {
-    event(new NewRoomAddition('Room added'));
+//Add New Room Event Test
+Route::post('/sender', function() {
+    $room = request()->room;
+    event(new NewRoomAddition($room));
 });
-
 
 Route::get('/listen', function() {
     return view('listen');
+});
+
+Route::get('/sender', function() {
+    return view('sender');
 });

@@ -33,6 +33,11 @@ class NewRoomAddition implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('room-added');
+        return new Channel('my-channel');
+    }
+
+    public function broadcastAs() 
+    {
+        return 'room-added';
     }
 }
