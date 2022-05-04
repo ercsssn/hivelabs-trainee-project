@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('bs5/bootstrap.min.css')}}">
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('bs5/bootstrap.bundle.min.js')}}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
   {{-- Nav Bar Start --}}
@@ -61,7 +62,5 @@
         </footer>
       </div>
       <!-- End of Footer -->
-
-      <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
