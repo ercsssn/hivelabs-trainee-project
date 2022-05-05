@@ -18,6 +18,22 @@ class AdminController extends Controller
         return view('login');
     }
 
+    // public function authenticate(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'username' => 'required',
+    //         'password' => 'required'
+    //     ]);
+
+    //     try {
+    //         if (Auth::attempt($validated)) {
+    //             return redirect()->intended('admin.dashboard');
+    //         }
+    //     } catch (\Throwable $th) {
+    //         //throw $th;
+    //     }
+    // }
+
     //Check Login
     function check_login(Request $request)
     {

@@ -15,6 +15,9 @@ class BannerController extends Controller
     public function index()
     {
         $data = Banner::all();
+        // $data = Banner::paginate(10);
+        // return view('banner.index')->with(['data'=>$data]);
+        // return view('banner.index', compact($data));
         return view('banner.index', ['data'=>$data]);
     }
 
@@ -48,7 +51,7 @@ class BannerController extends Controller
         }
         
 
-        $data = new banner;
+        $data = new Banner;
         $data->banner_src        = $imgPath;
         $data->alt_text          = $request->alt_text;
         $data->publish_status    = $request->publish_status;
@@ -63,6 +66,7 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function show(Banner $banner)
     public function show($id)
     {
         $data = Banner::find($id);
