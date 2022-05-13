@@ -24,7 +24,7 @@ class AdminController extends Controller
     //Login
     function login() 
     {
-        // dd(Hash::make('password'));
+        //dd(Hash::make('boss'));
 
         return view('login');
     }
@@ -34,7 +34,6 @@ class AdminController extends Controller
         $credentials = $request->only('username','password');
         
         if (Auth::guard('admin')->attempt($credentials)) {
-            // $adminData = Auth::guard('admin')->user()->password;
 
             $adminData = Admin::where([
                 'username'=>Auth::guard('admin')->user()->username, 'password'=>Auth::guard('admin')->user()->password
@@ -76,12 +75,14 @@ class AdminController extends Controller
     //Logout
     function logout() 
     {
-        Auth::logout();
+        session()->forget(['adminData']);
         return redirect('admin/login');
     }
 
     function dashboard() 
     {
+        $user = Auth::guard('admin')->user()->username;
+
         $rent = Rent::selectRaw('count(id) as total_rent, check_in_date')->groupBy('check_in_date')->get();
 
         $labels=[];
@@ -109,7 +110,7 @@ class AdminController extends Controller
         // echo '<pre>';
         // print_r($rt_rent);
 
-        return view('dashboard',['labels'=>$labels, 'data'=>$data,'plabels'=>$plabels, 'pdata'=>$pdata]);
+        return view('dashboard',['labels'=>$labels, 'data'=>$data,'plabels'=>$plabels, 'pdata'=>$pdata, 'user'=>$user]);
     }
 
     public function reviews()
