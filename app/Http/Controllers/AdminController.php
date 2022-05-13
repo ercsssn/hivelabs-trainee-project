@@ -41,8 +41,13 @@ class AdminController extends Controller
                 ->get();
             
             session(['adminData'=>$adminData]);
+            if ($request->has('rememberme')) {
+                Cookie::queue('adminuser',$request->username,1440);
+                Cookie::queue('adminpwd',$request->password,1440);
+            }
 
             return redirect()->intended('admin');
+
         }else {
             return redirect('admin/login')->with('msg','Invalid Username or Password!');
         }
