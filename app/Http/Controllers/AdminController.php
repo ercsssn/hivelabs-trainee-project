@@ -9,54 +9,66 @@ use App\Admin;
 use App\Rent;
 use App\Review;
 use Cookie;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    /**
+     * Handle an authentication attempt.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return Response
+     */
+
     //Login
     function login() 
     {
+        // dd(Hash::make('password'));
+
         return view('login');
     }
 
-    // public function authenticate(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'username' => 'required',
-    //         'password' => 'required'
-    //     ]);
-
-    //     try {
-    //         if (Auth::attempt($validated)) {
-    //             return redirect()->intended('admin.dashboard');
-    //         }
-    //     } catch (\Throwable $th) {
-    //         //throw $th;
-    //     }
-    // }
-
-    //Check Login
-    function check_login(Request $request)
+    public function check_login(Request $request)
     {
-        $request->validate([
-            'username'=>'required',
-            'password'=>'required',
-        ]);
+        $credentials = $request->only('username','password');
+        
+        if (Auth::guard('admin')->attempt($credentials, $remember)) {
+            // $adminData = Auth::guard('admin')->user()->password;
 
-        $admin = Admin::where(['username'=>$request->username, 'password'=>sha1($request->password)])->count();
-
-        if ($admin > 0) {
-            $adminData = Admin::where(['username'=>$request->username, 'password'=>sha1($request->password)])->get();
+            $adminData = Admin::where(['username'=>Auth::guard('admin')->user()->username, 'password'=>Auth::guard('admin')->user()->password])->get();
+            
             session(['adminData'=>$adminData]);
 
-            if ($request->has('rememberme')) {
-                Cookie::queue('adminuser',$request->username,1440);
-                Cookie::queue('adminpwd',$request->password,1440);
-            }
-            return redirect('admin');
-        }else{
+            return redirect()->intended('admin');
+        }else {
             return redirect('admin/login')->with('msg','Invalid Username or Password!');
         }
     }
+
+    // //Check Login
+    // function check_login(Request $request)
+    // {
+    //     $request->validate([
+    //         'username'=>'required',
+    //         'password'=>'required',
+    //     ]);
+
+    //     $admin = Admin::where(['username'=>$request->username, 'password'=>sha1($request->password)])->count();
+
+    //     if ($admin > 0) {
+    //         $adminData = Admin::where(['username'=>$request->username, 'password'=>sha1($request->password)])->get();
+    //         session(['adminData'=>$adminData]);
+
+    //         if ($request->has('rememberme')) {
+    //             Cookie::queue('adminuser',$request->username,1440);
+    //             Cookie::queue('adminpwd',$request->password,1440);
+    //         }
+    //         return redirect('admin');
+    //     }else{
+    //         return redirect('admin/login')->with('msg','Invalid Username or Password!');
+    //     }
+    // }
 
     //Logout
     function logout() 
