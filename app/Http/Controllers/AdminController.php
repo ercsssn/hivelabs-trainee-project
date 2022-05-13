@@ -33,10 +33,13 @@ class AdminController extends Controller
     {
         $credentials = $request->only('username','password');
         
-        if (Auth::guard('admin')->attempt($credentials, $remember)) {
+        if (Auth::guard('admin')->attempt($credentials)) {
             // $adminData = Auth::guard('admin')->user()->password;
 
-            $adminData = Admin::where(['username'=>Auth::guard('admin')->user()->username, 'password'=>Auth::guard('admin')->user()->password])->get();
+            $adminData = Admin::where([
+                'username'=>Auth::guard('admin')->user()->username, 'password'=>Auth::guard('admin')->user()->password
+                ])
+                ->get();
             
             session(['adminData'=>$adminData]);
 
@@ -73,7 +76,7 @@ class AdminController extends Controller
     //Logout
     function logout() 
     {
-        session()->forget(['adminData']);
+        Auth::logout();
         return redirect('admin/login');
     }
 
