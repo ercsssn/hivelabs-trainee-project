@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class AuthAdmin
 {
@@ -17,12 +18,12 @@ class AuthAdmin
     {
         if (Auth::guest()) {
             if ($request->ajax() || $request->wantsJson()) {
-                return response('Unauthorized.', 401);
-            } else {
                 return redirect()->guest('admin/login');
+            } else {
+                return redirect()->intended('admin');
             }
         }
-        
+
         return $next($request);
     }
 }
