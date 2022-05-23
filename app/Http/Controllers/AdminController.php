@@ -86,6 +86,7 @@ class AdminController extends Controller
 
     function dashboard() 
     {
+
         $user = Auth::guard('admin')->user()->username;
 
         $rent = Rent::selectRaw('count(id) as total_rent, check_in_date')->groupBy('check_in_date')->get();
