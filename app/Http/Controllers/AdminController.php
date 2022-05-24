@@ -86,9 +86,7 @@ class AdminController extends Controller
 
     function dashboard() 
     {
-
-        $user = Auth::guard('admin')->user()->username;
-
+    
         $rent = Rent::selectRaw('count(id) as total_rent, check_in_date')->groupBy('check_in_date')->get();
 
         $labels=[];
@@ -116,7 +114,7 @@ class AdminController extends Controller
         // echo '<pre>';
         // print_r($rt_rent);
 
-        return view('dashboard',['labels'=>$labels, 'data'=>$data,'plabels'=>$plabels, 'pdata'=>$pdata, 'user'=>$user]);
+        return view('dashboard',['labels'=>$labels, 'data'=>$data,'plabels'=>$plabels, 'pdata'=>$pdata]);
     }
 
     public function reviews()
