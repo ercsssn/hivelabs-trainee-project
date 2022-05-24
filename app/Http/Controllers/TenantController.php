@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Tenant;
 
 class TenantController extends Controller
@@ -53,7 +55,7 @@ class TenantController extends Controller
         $data = new Tenant;
         $data->full_name         = $request->full_name;
         $data->email             = $request->email;
-        $data->password          = sha1($request->password);
+        $data->password          = Hash::make($request->password);
         $data->mobile_number     = $request->mobile_number;
         $data->permanent_address = $request->permanent_address;
         $data->photo             = $imgPath;
@@ -146,18 +148,38 @@ class TenantController extends Controller
 
     function tenant_login(Request $request) 
     {
-        $email = $request->email;
-        $pwd = sha1($request->password);
-        $creds = Tenant::where(['email'=>$email, 'password'=>$pwd])->count();
+        $credentials = $request->only('email','password');
+        
+        if (Auth::guard('tenant')->attempt($credentials)) {
 
-        if ($creds > 0) {
-            $cred = Tenant::where(['email'=>$email, 'password'=>$pwd])->get();
-            session(['tenantlogin'=>true,'data'=>$cred]);
-            return redirect('/');
+            $tenantData = Tenant::where([
+                'email'=>Auth::guard('tenant')->user()->email, 
+                'password'=>Auth::guard('tenant')->user()->password
+                ])
+                ->get();
+
+            session(['tenantlogin'=>true,'data'=>$tenantData]);
+            return redirect()->intended('/');
+
         }else{
+            
             return redirect('login')->with('error','Email/Password does not exist.');
 
         }
+
+
+        // $email = $request->email;
+        // $pwd = sha1($request->password);
+        // $creds = Tenant::where(['email'=>$email, 'password'=>$pwd])->count();
+
+        // if ($creds > 0) {
+        //     $cred = Tenant::where(['email'=>$email, 'password'=>$pwd])->get();
+        //     session(['tenantlogin'=>true,'data'=>$cred]);
+        //     return redirect('/');
+        // }else{
+        //     return redirect('login')->with('error','Email/Password does not exist.');
+
+        // }
     }
 
     //Register
