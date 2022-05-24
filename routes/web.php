@@ -38,59 +38,56 @@ Route::get('rent/success', 'RentController@rent_payment_success');
 Route::get('rent/fail', 'RentController@rent_payment_fail');
 
 
+//Banner Routes
+Route::get('admin/banner/{id}/delete','BannerController@destroy');
+Route::resource('admin/banner',BannerController::class);
 
-Route::group(['middleware' => 'auth_admin'], function() {
+//RoomType Routes
+Route::get('admin/roomtype/{id}/delete','RoomTypeController@destroy');
+Route::resource('admin/roomtype',RoomTypeController::class);
 
-    //Banner Routes
-    Route::get('admin/banner/{id}/delete','BannerController@destroy');
-    Route::resource('admin/banner',BannerController::class);
+//Room Routes
+Route::get('admin/rooms/{id}/delete','RoomController@destroy');
+Route::resource('admin/rooms',RoomController::class);
 
-    //RoomType Routes
-    Route::get('admin/roomtype/{id}/delete','RoomTypeController@destroy');
-    Route::resource('admin/roomtype',RoomTypeController::class);
+//Tenant Routes
+Route::get('admin/tenant/{id}/delete','TenantController@destroy');
+Route::resource('admin/tenant',TenantController::class);
 
-    //Room Routes
-    Route::get('admin/rooms/{id}/delete','RoomController@destroy');
-    Route::resource('admin/rooms',RoomController::class);
+//Delete Image
+Route::get('admin/roomtypeimage/delete/{id}','RoomTypeController@destroy_image');
 
-    //Tenant Routes
-    Route::get('admin/tenant/{id}/delete','TenantController@destroy');
-    Route::resource('admin/tenant',TenantController::class);
+//Department Routes
+Route::get('admin/department/{id}/delete','EmployeeDepartmentController@destroy');
+Route::resource('admin/department',EmployeeDepartmentController::class);
 
-    //Delete Image
-    Route::get('admin/roomtypeimage/delete/{id}','RoomTypeController@destroy_image');
+//Employee Payment
+Route::get('admin/employee/payments/{id}','EmployeeController@all_payments');     
+Route::get('admin/employee/payment/{id}/add','EmployeeController@add_payment');
+Route::post('admin/employee/payment/{id}','EmployeeController@save_payment');
+Route::get('admin/employee/payment/{id}/{employee_id}/delete','EmployeeController@delete_payment');
 
-    //Department Routes
-    Route::get('admin/department/{id}/delete','EmployeeDepartmentController@destroy');
-    Route::resource('admin/department',EmployeeDepartmentController::class);
+//Employee CRUD
+Route::get('admin/employee/{id}/delete','EmployeeController@destroy');
+Route::resource('admin/employee',EmployeeController::class);
 
-    //Employee Payment
-    Route::get('admin/employee/payments/{id}','EmployeeController@all_payments');     
-    Route::get('admin/employee/payment/{id}/add','EmployeeController@add_payment');
-    Route::post('admin/employee/payment/{id}','EmployeeController@save_payment');
-    Route::get('admin/employee/payment/{id}/{employee_id}/delete','EmployeeController@delete_payment');
+//Rent
+Route::get('admin/rent/{id}/delete','RentController@destroy');
+Route::get('admin/rent/available_rooms/{check_in_date}','RentController@available_rooms');
+Route::resource('admin/rent',RentController::class);
 
-    //Employee CRUD
-    Route::get('admin/employee/{id}/delete','EmployeeController@destroy');
-    Route::resource('admin/employee',EmployeeController::class);
+//Services CRUD
+Route::get('admin/service/{id}/delete','ServiceController@destroy');
+Route::resource('admin/service',ServiceController::class);
 
-    //Rent
-    Route::get('admin/rent/{id}/delete','RentController@destroy');
-    Route::get('admin/rent/available_rooms/{check_in_date}','RentController@available_rooms');
-    Route::resource('admin/rent',RentController::class);
+//Reviews
+Route::get('tenant/add_review','HomeController@add_review');
+Route::post('tenant/save_review','HomeController@save_review');
+Route::get('admin/review/{id}/delete','AdminController@remove_review');
+Route::get('admin/reviews','AdminController@reviews');
+Route::post('save_msg','PageController@save_msg');
 
-    //Services CRUD
-    Route::get('admin/service/{id}/delete','ServiceController@destroy');
-    Route::resource('admin/service',ServiceController::class);
 
-    //Reviews
-    Route::get('tenant/add_review','HomeController@add_review');
-    Route::post('tenant/save_review','HomeController@save_review');
-    Route::get('admin/review/{id}/delete','AdminController@remove_review');
-    Route::get('admin/reviews','AdminController@reviews');
-    Route::post('save_msg','PageController@save_msg');
-
-});
 
 
 //Add New Room Event Test
