@@ -16,12 +16,8 @@ class AuthAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guest()) {
-            if ($request->ajax() || $request->wantsJson()) {
-                return redirect()->guest('admin/login');
-            } else {
-                return redirect()->intended('admin');
-            }
+        if (Auth::guard('admin')->check()) {
+            return redirect()->intended('admin');
         }
 
         return $next($request);
