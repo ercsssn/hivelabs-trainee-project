@@ -265,7 +265,7 @@
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{url('admin/logout')}}" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fa-sm fa-fw mr-2 text-gray-400"></i>
-                                {{ $user }}
+                                {{-- {{ $user }} --}}
                                 </a>
                                 <a class="dropdown-item" href="{{url('admin/logout')}}" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
