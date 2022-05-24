@@ -26,17 +26,17 @@ Route::get('admin/logout', 'AdminController@logout');
 // Admin Dashboard
 Route::get('admin', 'AdminController@dashboard');
 
-
 //Frontend
 Route::get('login', 'TenantController@login');
 Route::post('tenant/login', 'TenantController@tenant_login');
 Route::get('register', 'TenantController@register');
 Route::get('logout', 'TenantController@logout');
 
-Route::get('rent', 'RentController@front_rent');
-Route::get('rent/success', 'RentController@rent_payment_success');
-Route::get('rent/fail', 'RentController@rent_payment_fail');
-
+Route::group(['middleware' => 'auth_tenant'], function() {
+    Route::get('rent', 'RentController@front_rent');
+    Route::get('rent/success', 'RentController@rent_payment_success');
+    Route::get('rent/fail', 'RentController@rent_payment_fail');
+});
 
 //Banner Routes
 Route::get('admin/banner/{id}/delete','BannerController@destroy');
