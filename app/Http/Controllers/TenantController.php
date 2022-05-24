@@ -118,7 +118,7 @@ class TenantController extends Controller
         $data = Tenant::find($id);
         $data->full_name         = $request->full_name;
         $data->email             = $request->email;
-        $data->password          = sha1($request->password);
+        $data->password          = Hash::make($request->password);
         $data->mobile_number     = $request->mobile_number;
         $data->permanent_address = $request->permanent_address;
         $data->photo             = $imgPath;
